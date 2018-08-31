@@ -1,0 +1,20 @@
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand h2">Utenti</a>
+  <form class="form-inline" [formGroup]>
+    <button class="btn btn-outline-success my-2 my-sm-0" routerLink="add">Aggiungere nuova</button>
+  </form>
+</nav>
+<div>
+  <ul class="list-group">
+    <li *ngFor="let user of users" class="list-group-item">
+      <div class="row">
+        <div class="col-10">
+          <a routerLink="{{user.id}}">{{user.nome}} {{user.cognome}}</a>
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn text-danger" (click)="delete(user.id)">Elimina</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

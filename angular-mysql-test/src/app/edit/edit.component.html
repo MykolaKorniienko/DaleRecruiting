@@ -1,0 +1,76 @@
+<form [formGroup]="userForm" (ngSubmit)="submit()">
+    <div class="form-group">
+        <label>Nome</label>
+        <input type="text" formControlName="nome" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nome.errors }" [(ngModel)]="user.nome" />
+        <div *ngIf="submitted && f.nome.errors" class="invalid-feedback">
+            <div *ngIf="f.nome.errors.required">Nome è necessario</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Cognome</label>
+        <input type="text" formControlName="cognome" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cognome.errors }" [(ngModel)]="user.cognome" />
+        <div *ngIf="submitted && f.cognome.errors" class="invalid-feedback">
+            <div *ngIf="f.cognome.errors.required">Cognome è necessario</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" [(ngModel)]="user.email" />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email è necessario</div>
+            <div *ngIf="f.email.errors.email">Email non è valido</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Età</label>
+        <input type="number" formControlName="eta" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.eta.errors }" [(ngModel)]="user.eta" />
+        <div *ngIf="submitted && f.eta.errors" class="invalid-feedback">
+            <div *ngIf="f.eta.errors.required">Età è necessario</div>
+            <div *ngIf="f.eta.errors.min">Età non può essere inferiore a 0</div>
+            <div *ngIf="f.eta.errors.max">Età non può essere superiore a 150</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Sesso</label>
+        <select formControlName="sesso" class="form-control" [(ngModel)]="user.sesso">
+            <option [ngValue]="sesso" *ngFor="let sesso of sexes">{{sesso}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Paese di nascita</label>
+        <select formControlName="nascitaPaese" class="form-control" [(ngModel)]="user.nascitaPaese">
+            <option [ngValue]="paese" *ngFor="let paese of paesi">{{paese}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Data di nascita</label>
+        <input type="date" formControlName="nascitaData" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nascitaData.errors }" [(ngModel)]="user.nascitaData" />
+    </div>
+    <div class="form-group">
+        <label>Nazionalita</label>
+        <input type="text" formControlName="nazionalita" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nazionalita.errors }" [(ngModel)]="user.nazionalita" />
+    </div>
+    <div class="form-group">
+        <label>Formazione scolastico</label>
+        <select formControlName="formazioneScolastico" class="form-control" [(ngModel)]="user.formazioneScolastico">
+            <option [ngValue]="formazioneScolastico" *ngFor="let formazioneScolastico of formazioneScolastici">{{formazioneScolastico}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Technologie conosciute</label>
+        <select formControlName="technologie" multiple class="form-control" [(ngModel)]="user.technologie">
+            <option [ngValue]="technologia" *ngFor="let technologia of technologie">{{technologia}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Data di colloquio</label>
+        <input type="date" formControlName="dataColloquio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dataColloquio.errors }" [(ngModel)]="user.dataColloquio" />
+    </div>
+    <div class="form-group">
+        <label>Residenza di comune</label>
+        <input type="text" formControlName="residenzaComune" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.residenzaComune.errors }" [(ngModel)]="user.residenzaComune" />
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Invio</button>
+    </div>
+</form>
