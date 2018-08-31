@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MainService } from '../main.service';
 
 @Component({
@@ -8,7 +7,6 @@ import { MainService } from '../main.service';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  searchForm: FormGroup;
   submitted = false;
   searchPushed = false;
   searchUser = {};
@@ -16,28 +14,11 @@ export class SearchComponent implements OnInit {
   sexes = ["f", "m"];
 
   constructor(
-    private formBuilder: FormBuilder, 
     private mainService: MainService, 
   ) { }
 
   ngOnInit() {
-    this.searchForm = this.formBuilder.group({
-      nome: ['', [Validators.maxLength(50)]],
-      cognome: ['', [Validators.maxLength(100)]],
-      email:  ['', [Validators.email]],
-      eta:  ['', [Validators.min(0), Validators.max(100)]],
-      sesso:  ['', []],
-      nascitaPaese:  ['', []],
-      nascitaData:  ['', []],
-      nazionalita:  ['', [Validators.maxLength(100)]],
-      formazioneScolastico:  ['', []],
-      technologie:  ['', []],
-      dataColloquio:  ['', []],
-      residenzaComune:  ['', [Validators.maxLength(150)]],
-    });
   }
-
-  get f() { return this.searchForm.controls; }
 
   search() {
     this.submitted = true;
@@ -64,6 +45,7 @@ export class SearchComponent implements OnInit {
 
   cancel() {
     this.searchUser = {};
+    this.users = [];
   }
 
 }

@@ -8,7 +8,7 @@
       <input type="text" class="form-control" [(ngModel)]="searchUser.text" name="text" placeholder="cerca nome, cognome o e-mail..."/>
     </div>
     <div class="col">
-      <input type="reset" class="btn btn-danger w-100" [disabled]="submitted" (click)="cancel()" value="Annulla"/>
+      <input class="btn btn-danger w-100" [disabled]="submitted" (click)="cancel()" value="Annulla"/>
     </div>
     <div class="col">
       <input type="submit" class="btn btn-primary w-100" [disabled]="submitted" (click)="search()" value="Cerca"/>
@@ -58,52 +58,6 @@
         </div>
       </div>
     </div>
-  <!-- <div class="form-row">
-    <div class="col-auto">
-      <label class="col-form-label">Nome</label>
-    </div>
-    <div class="col-auto">
-      <input type="text" class="form-control" [(ngModel)]="searchUser.nome" name="nome"/>
-    </div>
-    <div class="col-auto">
-        <label class="col-form-label">Sesso</label>
-    </div>
-    <div class="col-auto">
-        <select class="form-control" [(ngModel)]="searchUser.sesso" name="sesso">
-            <option [ngValue]="sesso" *ngFor="let sesso of sexes">{{sesso}}</option>
-        </select>
-    </div>
-  </div>
-  <div class="form-row"> 
-    <div class="col-auto">
-        <label class="col-form-label">Data di nascita</label>
-    </div>
-    <div class="col-auto">
-        <input type="date" class="form-control" [(ngModel)]="searchUser.nascitaData" name="nascitaData"/>
-    </div>
-    <div class="col-auto">
-        <label class="col-form-label">Età</label>
-    </div>
-    <div class="col-auto">
-        <input type="number" class="form-control" [(ngModel)]="searchUser.eta" name="eta"/>
-    </div>               
-  </div> -->
-  <!-- <div id="accordion">
-    <div class="card">
-      <div class="card-header">
-        <h5 class="mb-0">
-          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Dati anagrafici
-          </button>
-        </h5>
-      </div>
-      <div id="collapseOne" class="collapse multi-collapse" data-parent="#accordion">
-        <div class="card-body">
-            
-        </div>
-      </div>
-    </div>
-  </div> -->
 </form>
 
 <div *ngIf="searchPushed">
