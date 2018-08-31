@@ -18,7 +18,7 @@ module.exports = (sequelize, Sequelize) => {
         etaA: {
             type: Sequelize.INTEGER
         },
-        residenza: {
+        residenzaComune: {
             type: Sequelize.STRING
         },
         tipoBadante: {
