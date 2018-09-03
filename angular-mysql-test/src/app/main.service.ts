@@ -38,4 +38,8 @@ export class MainService {
   searchUser(search) {
     return this.http.post('http://localhost:8080/api/search', search, httpOptions);
   }
+
+  getSearches() {
+    return this.http.get('http://localhost:8080/api/search', httpOptions);
+  }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MainService } from '../main.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-search',
@@ -7,33 +9,48 @@ import { MainService } from '../main.service';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  searchForm: FormGroup;
   submitted = false;
   searchPushed = false;
-  searchUser = {};
-  users:any;
+  users: Object;
   sexes = ["f", "m"];
 
   constructor(
     private mainService: MainService, 
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.searchForm = this.formBuilder.group({
+      data: [moment(new Date()).format("YYYY-MM-DDTHH:mm"), [Validators.required]],
+      titolo: ['', [Validators.required]],
+      cliente:  ['', [Validators.required]],
+      descrizione:  ['', [Validators.required]],
+      text:  ['', []],
+      sesso:  ['', []],
+      etaDa:  ['', []],
+      etaA:  ['', []],
+      residenzaComune:  ['', []],
+    });
   }
+
+  get f() { return this.searchForm.controls; }
 
   search() {
     this.submitted = true;
-    
-    if (!Object.keys(this.searchUser).length) {
-        return this.submitted = false;
+    if (this.searchForm.invalid) {
+      return;
     }
 
-    for(let key in this.searchUser) {
-      if (!this.searchUser[key]) {
-        delete this.searchUser[key];
+    let searchQuery = Object.assign({}, this.searchForm.value);
+    for(let key in searchQuery) {
+      if (!searchQuery[key]) {
+        delete searchQuery[key];
       }
     }
-
-    this.mainService.searchUser(this.searchUser).subscribe((users) => {
+    
+    console.log('searchForm', searchQuery);
+    this.mainService.searchUser(searchQuery).subscribe((users) => {
       this.users = users;
       this.submitted = false;
       this.searchPushed = true;
@@ -44,7 +61,10 @@ export class SearchComponent implements OnInit {
   }
 
   cancel() {
-    this.searchUser = {};
+    this.searchForm.reset();
+    this.searchForm.patchValue({
+      data: moment(new Date()).format("YYYY-MM-DDTHH:mm")
+    });
     this.users = [];
   }
 

@@ -14,7 +14,7 @@ app.use(cors(corsOptions))
 
 const db = require('./app/config/db.config.js');
   
-db.sequelize.sync().then(() => {
+db.sequelize.sync({ alter: true }).then(() => {
   //console.log('Resync with { force: true }');
   //initial();
 });

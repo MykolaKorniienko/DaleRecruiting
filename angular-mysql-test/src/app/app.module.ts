@@ -15,6 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { SearchListComponent } from './search-list/search-list.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     EditComponent,
     SearchComponent,
     ConfirmModalComponent,
+    SearchListComponent,
   ],
   imports: [
     BrowserModule,

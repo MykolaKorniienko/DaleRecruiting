@@ -5,7 +5,7 @@ import { MainService } from "../main.service";
 import { ToastrService } from 'ngx-toastr';
 import { ModalService } from '../modal.service';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
-import * as moment from 'moment'
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-edit',
@@ -88,17 +88,17 @@ export class EditComponent implements OnInit {
     }
 
     this.modalService.open(ConfirmModalComponent, action).then((response) => {
-      console.log('response', response, functionName, this.user);
       if (response) {
-        console.log('go!');
         this.mainService[functionName](this.user).subscribe(() => {
-          console.log('gg');
           this.toastr.success(message);
           this.router.navigate(['/users']);
           this.submitted = false;
+        }, (error) => {
+          this.toastr.error(error);
+          this.submitted = false;
         });
       } else {
-        console.log('bb');
+        this.submitted = false;
       }
     })
   }

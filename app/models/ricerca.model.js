@@ -1,5 +1,17 @@
 module.exports = (sequelize, Sequelize) => {
 	const Ricerca = sequelize.define('ricerca', {
+        data: {
+            type: Sequelize.DATE
+        },
+        titolo: {
+            type: Sequelize.STRING
+        },
+        cliente: {
+            type: Sequelize.STRING
+        },
+        descrizione: {
+            type: Sequelize.STRING
+	    },
         text: {
             type: Sequelize.STRING
 	    },

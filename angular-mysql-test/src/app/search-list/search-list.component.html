@@ -1,0 +1,25 @@
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand h2">Ricerche</a>
+</nav>
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Client</th>
+        <th scope="col">Titolo</th>
+        <th scope="col">Descrizione</th>
+        <th scope="col">Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let search of searches">
+        <th scope="row">{{search.id}}</th>
+        <td>{{search.cliente}}</td>
+        <td>{{search.titolo}}</td>
+        <td>{{search.descrizione}}</td>
+        <td>{{search.data | date:'d MMM, y, H:mm' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

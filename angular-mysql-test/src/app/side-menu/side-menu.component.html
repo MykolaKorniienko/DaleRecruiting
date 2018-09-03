@@ -2,4 +2,5 @@
 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
     <a class="nav-link" role="tab" routerLink="/users" [ngClass]="{ 'active': router.url.indexOf('/users') !== -1 }">Utenti</a>
     <a class="nav-link" role="tab" routerLink="/search" [ngClass]="{ 'active': router.url == '/search' }">Ricerca</a>
+    <a class="nav-link" role="tab" routerLink="/search-list" [ngClass]="{ 'active': router.url == '/search-list' }">Lista di ricerche</a>
 </div>
