@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MainService } from '../main.service';
+import { MainService } from '../../services/main.service';
 import { ToastrService } from 'ngx-toastr';
-import { ModalService } from '../modal.service';
+import { ModalService } from '../../modal.service';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 @Component({

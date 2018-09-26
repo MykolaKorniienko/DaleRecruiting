@@ -1,0 +1,85 @@
+#tRow:nth-child(even) {
+  background-color:  lightblue;
+}
+
+.ui-sortable-column:hover{
+  cursor: default;
+}
+
+td, tr, th, p-table{
+  border: none !important;
+}
+
+
+#id-tHeader{
+
+  width: 80px;
+}
+
+#cliente-tHeader{
+
+  width: 150px;
+}
+
+#data-tHeader{
+
+  width: 170px;
+}
+
+#titolo-tHeader{
+
+  width: 270px;
+}
+#td-data{
+
+  text-align: center;
+}
+
+td>div{
+
+  max-height: 19px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.ui-sortable-column.ui-state-highlight, .ui-sortable-column.ui-state-highlight:hover{
+
+  background-color: #007bff !important;
+  border-radius: .25rem !important;
+}
+
+
+.ui-paginator-page{
+
+ border-radius: .25rem !important;
+}
+
+.ui-paginator{
+  padding-top: 10px !important;
+  background-color:  transparent !important;
+  border: none !important;
+}
+
+.ui-table-caption{
+
+  background-color:  transparent !important;
+  border: none !important;
+  text-align: left !important;
+  margin-bottom: 5px !important;
+}
+
+.ui-table-thead > tr > th{
+  background-color: transparent !important;
+}
+
+.ui-table-thead > tr > th:not(ui-state-active):hover {
+  background-color: lightblue !important;
+  border-radius: .25rem;
+}
+
+tr{
+  border-radius: 15px !important;
+}
+

@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {SearchFilter} from "../models/searchFilter";
+import {Observable} from "rxjs";
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable({
@@ -13,25 +14,26 @@ export class MainService {
 
   private userUrl = 'http://localhost:8080/api/user';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  getUsers () {
+  getUsers() {
     return this.http.get(this.userUrl);
   }
 
   getUser(id) {
     return this.http.get(`${this.userUrl}/${id}`);
   }
- 
-  addUser (user) {
+
+  addUser(user) {
     return this.http.post(this.userUrl, user, httpOptions);
   }
- 
+
   deleteUser(id) {
     return this.http.delete(`${this.userUrl}/${id}`, httpOptions);
   }
- 
-  updateUser (user) {
+
+  updateUser(user) {
     return this.http.put(this.userUrl, user, httpOptions);
   }
 
@@ -39,7 +41,7 @@ export class MainService {
     return this.http.post('http://localhost:8080/api/search', search, httpOptions);
   }
 
-  getSearches() {
-    return this.http.get('http://localhost:8080/api/search', httpOptions);
+  getSearches(): Observable<SearchFilter[]> {
+    return this.http.get<SearchFilter[]>('http://localhost:8080/api/search', httpOptions);
   }
 }

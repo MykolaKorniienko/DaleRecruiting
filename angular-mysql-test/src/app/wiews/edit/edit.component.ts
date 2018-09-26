@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from "@angular/router";
-import { MainService } from "../main.service";
+import { MainService } from "../../services/main.service";
 import { ToastrService } from 'ngx-toastr';
-import { ModalService } from '../modal.service';
+import { ModalService } from '../../modal.service';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-edit',
@@ -44,6 +45,7 @@ export class EditComponent implements OnInit {
       formazioneScolastico:  ['', []],
       technologie:  ['', []],
       dataColloquio:  ['', []],
+      colloquioSostenuto: ['', []],
       residenzaComune:  ['', [Validators.maxLength(150)]],
     });
     this.userId = this.route.snapshot.paramMap.get('userId');

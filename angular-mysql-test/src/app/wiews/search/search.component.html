@@ -1,0 +1,160 @@
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand h2">Ricerca</a>
+</nav>
+<br>
+<form [formGroup]="searchForm" (ngSubmit)="search()">
+  <div class="card">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Data</label>
+          <div class="col-sm-9">
+            <input type="datetime-local" readonly class="form-control" formControlName="data"
+                   [ngClass]="{ 'is-invalid': submitted && f.data.errors }">
+            <div *ngIf="submitted && f.data.errors" class="invalid-feedback">
+              <div *ngIf="f.data.errors.required">Data è necessario</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Titolo</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" formControlName="titolo"
+                   [ngClass]="{ 'is-invalid': submitted && f.titolo.errors }">
+            <div *ngIf="submitted && f.titolo.errors" class="invalid-feedback">
+              <div *ngIf="f.titolo.errors.required">Titolo è necessario</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Cliente</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" formControlName="cliente"
+                   [ngClass]="{ 'is-invalid': submitted && f.cliente.errors }">
+            <div *ngIf="submitted && f.cliente.errors" class="invalid-feedback">
+              <div *ngIf="f.cliente.errors.required">Cliente è necessario</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Descrizione</label>
+          <div class="col-sm-9">
+            <textarea class="form-control" formControlName="descrizione"
+                      [ngClass]="{ 'is-invalid': submitted && f.descrizione.errors }"></textarea>
+            <div *ngIf="submitted && f.descrizione.errors" class="invalid-feedback">
+              <div *ngIf="f.descrizione.errors.required">Descrizione è necessario</div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="form-row">
+          <div class="col-md-12">
+            <input type="text" class="form-control" formControlName="text"
+                   placeholder="cerca nome, cognome o e-mail..."/>
+          </div>
+
+        </div>
+      </li>
+      <div id="accordion">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                      aria-controls="collapseOne" type="button">
+                Opzioni Aggiuntive
+              </button>
+            </h5>
+          </div>
+          <div id="collapseOne" class="collapse multi-collapse" data-parent="#accordion">
+            <div class="card-body">
+              <div class="form-row">
+                <div class="col-auto">
+                  <label class="col-form-label">Sesso</label>
+                </div>
+                <div class="col-auto">
+                  <select class="form-control" formControlName="sesso">
+                    <option [ngValue]="sesso" *ngFor="let sesso of sexes">{{sesso}}</option>
+                  </select>
+                </div>
+                <div class="col-auto">
+                  <label class="col-form-label">Età da:</label>
+                </div>
+                <div class="col-auto" style="width: 70px">
+                  <input type="number" class="form-control" formControlName="etaDa"/>
+                </div>
+                <div class="col-auto">
+                  <label class="col-form-label">a:</label>
+                </div>
+                <div class="col-auto" style="width: 70px">
+                  <input type="number" class="form-control" formControlName="etaA"/>
+                </div>
+                <div class="col-auto">
+                  <label class="col-form-label">Residenza</label>
+                </div>
+                <div class="col-auto">
+                  <input type="text" class="form-control" formControlName="residenzaComune"/>
+                </div>
+              </div>
+              <br>
+              <!-- <div class="form-row">
+                      <div class="col-auto">
+                          <label class="col-form-label">Patente</label>
+                      </div>
+                      <div class="col-auto">
+                          <select class="form-control" [(ngModel)]="searchUser.patente" name="patente">
+                              <option [ngValue]="patente" *ngFor="let patente of patenti">{{patente}}</option>
+                          </select>
+                      </div>
+                      <div class="col-auto">
+                              <label class="col-form-label">Stato Scheda</label>
+                      </div>
+                      <div class="col-auto">
+                          <select class="form-control" [(ngModel)]="searchUser.statoScheda" name="statoScheda">
+                              <option [ngValue]="statoScheda" *ngFor="let statoScheda of statoSchedi">{{statoScheda}}</option>
+                          </select>
+                      </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </ul>
+  </div>
+
+  <div class="bottomButtonsContainer">
+    <div class="">
+      <input type="button"
+             class="btn btn-danger w-100 "
+             (click)="cancel()"
+             value="Annulla"/>
+    </div>
+
+    <div class="">
+      <input type="submit"
+             class="btn btn-primary w-100"
+             value="Cerca"/>
+    </div>
+  </div>
+</form>
+
+<div *ngIf="searchPushed">
+  <nav class="navbar navbar-light bg-light justify-content-between">
+    <a class="navbar-brand h2">Risultato della ricerca</a>
+  </nav>
+  <div>
+    <ul *ngIf="users.length>0" class="list-group">
+      <li *ngFor="let user of users" class="list-group-item">
+        <div class="row">
+          <div class="col-12">
+            <a routerLink="/users/{{user.id}}">{{user.nome}} {{user.cognome}}</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <a *ngIf="!users.length" class="text-default">
+      Nessun utente è stato trovato
+    </a>
+  </div>
+</div>

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MainService } from '../main.service';
+import { MainService } from '../../services/main.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment'
+import {SearchFilter} from "../../models/searchFilter";
+import {SearchFilterTransferService} from "../../services/search-filter-transfer.service";
 
 @Component({
   selector: 'app-search',
@@ -15,23 +17,45 @@ export class SearchComponent implements OnInit {
   users: Object;
   sexes = ["f", "m"];
 
+  date: Date = new Date();
+  title: string = '';
+  cliente: string = '';
+  description: string = '';
+  gender: string = '';
+  ageFrom: number;
+  ageTo: number;
+
   constructor(
     private mainService: MainService, 
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private serchFilterTransfer: SearchFilterTransferService
   ) { }
 
   ngOnInit() {
+
+    if(this.serchFilterTransfer.getSearchFilter() == null){
+
+
+    }
+
+
     this.searchForm = this.formBuilder.group({
-      data: [moment(new Date()).format("YYYY-MM-DDTHH:mm"), [Validators.required]],
-      titolo: ['', [Validators.required]],
-      cliente:  ['', [Validators.required]],
-      descrizione:  ['', [Validators.required]],
+      data: [moment(this.date).format("YYYY-MM-DD HH:mm"), [Validators.required]],
+      titolo: [this.title, [Validators.required]],
+      cliente:  [this.cliente , [Validators.required]],
+      descrizione:  [this.description , [Validators.required]],
       text:  ['', []],
       sesso:  ['', []],
       etaDa:  ['', []],
       etaA:  ['', []],
       residenzaComune:  ['', []],
+      campoInnesistente: ['', []],
     });
+
+    if(this.serchFilterTransfer.getSearchFilter() == null){
+
+
+    }
   }
 
   get f() { return this.searchForm.controls; }

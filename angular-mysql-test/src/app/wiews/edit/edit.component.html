@@ -42,10 +42,22 @@
             <option [ngValue]="paese" *ngFor="let paese of paesi">{{paese}}</option>
         </select>
     </div>
-    <div class="form-group">
-        <label>Data di nascita</label>
-        <input type="date" formControlName="nascitaData" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nascitaData.errors }" [(ngModel)]="user.nascitaData" />
-    </div>
+    <!--<div class="form-group">-->
+        <!--<label>Data di nascita</label>-->
+        <!--<input type="date" formControlName="nascitaData" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nascitaData.errors }" [(ngModel)]="user.nascitaData" />-->
+    <!--</div>-->
+  <div class="form-group">
+    <table class="fullWidthTable">
+      <tr>
+        <td><label>Data di nascita</label></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><input type="date" formControlName="nascitaData" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nascitaData.errors }" [(ngModel)]="user.nascitaData" /></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
     <div class="form-group">
         <label>Nazionalita</label>
         <input type="text" formControlName="nazionalita" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nazionalita.errors }" [(ngModel)]="user.nazionalita" />
@@ -62,18 +74,34 @@
             <option [ngValue]="technologia" *ngFor="let technologia of technologie">{{technologia}}</option>
         </select>
     </div>
-    <div class="form-group">
-        <table class="fullWidthTable">
-            <tr>
-                <td><label class="halfLabel">Data di colloquio</label></td>
-                <td><label class="halfLabel">Colloquio già sostenuto</label></td>
-            </tr>
-            <tr>
-                <td><input type="date" formControlName="dataColloquio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dataColloquio.errors }" [(ngModel)]="user.dataColloquio" /></td>
-                <td><input type="checkbox" formControlName="sostenuto" [(ngModel)]="user.colloquiosostenuto"></td>
-            </tr>
-        </table>
-    </div>
+    <!--<div class="form-group">-->
+        <!--<table class="fullWidthTable">-->
+            <!--<tr>-->
+                <!--<td><label class="halfLabel">Data di colloquio</label></td>-->
+                <!--<td><label class="halfLabel">Colloquio già sostenuto</label></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td><input type="date" formControlName="dataColloquio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dataColloquio.errors }" [(ngModel)]="user.dataColloquio" /></td>-->
+                <!--<td><input type="checkbox" formControlName="sostenuto" [(ngModel)]="user.colloquiosostenuto"></td>-->
+            <!--</tr>-->
+        <!--</table>-->
+    <!--</div>-->
+  <div class="form-group">
+    <table class="fullWidthTable">
+      <tr>
+        <td><label class="halfLabel">Data del colloquio</label></td>
+        <td><label class="halfLabel">Colloquio già sostenuto</label></td>
+      </tr>
+      <tr>
+        <td><input type="date" formControlName="dataColloquio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dataColloquio.errors }" [(ngModel)]="user.dataColloquio" />
+          <div *ngIf="submitted && f.dataColloquio.errors" class="invalid-feedback">
+            <div *ngIf="f.dataColloquio.errors.required">La data del colloquio è necessaria</div>
+          </div>
+        </td>
+        <td><input type="checkbox" formControlName="colloquioSostenuto" [(ngModel)]="user.colloquioSostenuto"></td>
+      </tr>
+    </table>
+  </div>
     <div class="form-group">
         <label>Residenza di comune</label>
         <input type="text" formControlName="residenzaComune" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.residenzaComune.errors }" [(ngModel)]="user.residenzaComune" />

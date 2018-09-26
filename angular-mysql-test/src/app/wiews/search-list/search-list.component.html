@@ -1,0 +1,38 @@
+<p-table [columns]="cols" [value]="searchFilters" [paginator]="true" [rows]="10"
+         selectionMode="single" (onRowSelect)="onRowSelect($event)">
+  <ng-template pTemplate="caption">
+    Lista ricerche
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns" [id]="col.field+'-tHeader'" [pSortableColumn]="col.field">
+        {{col.header}}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-searchFilter let-columns="columns">
+    <tr id="tRow" [pSelectableRow]="searchFilter">
+
+      <td id="td-id" >
+        <div >{{searchFilter['id']}}</div>
+      </td>
+
+      <td id="td-cliente">
+        <div >{{searchFilter['cliente']}}</div>
+      </td>
+
+      <td id="td-titolo">
+        <div >{{searchFilter['titolo']}}</div>
+      </td>
+
+      <td id="td-descrizione">
+        <div >{{searchFilter['descrizione']}}</div>
+      </td>
+
+      <td id="td-data">
+        <div >{{searchFilter['data'] | date:'dd-MM-y,  HH:mm' }} </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
