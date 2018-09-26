@@ -33,6 +33,9 @@ module.exports = (sequelize, Sequelize) => {
         dataColloquio: {
             type: Sequelize.DATE
         },
+        colloquioSostenuto: {
+            type: Sequelize.BOOLEAN
+        },
         residenzaComune: {
             type: Sequelize.STRING
         },
